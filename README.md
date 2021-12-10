@@ -32,3 +32,7 @@ npm i bootstrap@latest
 ```
 
 12. Deleted all the files inside the src
+
+## Flow of Components
+
+cartItem <- cart <- app <- index
