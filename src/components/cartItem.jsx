@@ -4,9 +4,9 @@ class CartItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "Toothpaste",
-      desc: "Your teeth need this.",
-      price: 3,
+      name: props.name,
+      desc: props.desc,
+      price: props.price,
       quantity: 1,
     };
   }
