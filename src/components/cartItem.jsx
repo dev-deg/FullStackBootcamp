@@ -21,7 +21,7 @@ class CartItem extends Component {
     } else {
       //Subtract
       this.setState({
-        quantity: quantity > 1 ? (quantity -= 1) : quantity,
+        quantity: quantity > 0 ? (quantity -= 1) : quantity,
       });
     }
     this.state.onQuantityChanged(this.state.name, quantity);

@@ -41,6 +41,13 @@ class Cart extends Component {
     items.forEach((i) => {
       if (i.name === name && i.quantity !== quantity) {
         i.quantity = quantity;
+        if (quantity === 0) {
+          //remove the item
+          console.log(items);
+          items.splice(items.indexOf(i), 1);
+          console.log(items);
+        }
+        //update the state
         this.setState({ cartItems: items });
         return;
       }
@@ -70,6 +77,7 @@ class Cart extends Component {
         {this.state.cartItems.map((item) => (
           <CartItem
             name={item.name}
+            key={this.state.cartItems.indexOf(item)}
             desc={item.desc}
             price={item.price}
             quantity={item.quantity}
