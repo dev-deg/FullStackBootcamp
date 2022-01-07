@@ -5,6 +5,7 @@ class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      rate: 18,
       cartItems: [
         { name: "Toothpaste", desc: "Goo-like thing", price: 3, quantity: 2 },
         {
@@ -25,9 +26,43 @@ class Cart extends Component {
           price: 0.1,
           quantity: 10,
         },
+        {
+          name: "Floss",
+          desc: "String sort of",
+          price: 3.25,
+          quantity: 1,
+        },
       ],
     };
   }
+
+  QuantityChanged(name, quantity) {
+    var items = this.state.cartItems;
+    items.forEach((i) => {
+      if (i.name === name && i.quantity !== quantity) {
+        i.quantity = quantity;
+        this.setState({ cartItems: items });
+        return;
+      }
+    });
+  }
+
+  GetSubTotal(items) {
+    var subtotal = 0;
+    items.forEach((i) => {
+      subtotal += i.price * i.quantity;
+    });
+    return subtotal;
+  }
+
+  GetVAT(subtotal, rate) {
+    return (rate / 100) * subtotal;
+  }
+
+  GetTotal(subtotal, rate) {
+    return subtotal + this.GetVAT(subtotal, rate);
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -40,6 +75,23 @@ class Cart extends Component {
             quantity={item.quantity}
           />
         ))}
+        <h3 className="m-3">
+          Subtotal: €{this.GetSubTotal(this.state.cartItems).toFixed(2)}
+        </h3>
+        <h3 className="m-3">
+          VAT: €
+          {this.GetVAT(
+            this.GetSubTotal(this.state.cartItems),
+            this.state.rate
+          ).toFixed(2)}
+        </h3>
+        <h3 className="m-3">
+          Total: €
+          {this.GetTotal(
+            this.GetSubTotal(this.state.cartItems),
+            this.state.rate
+          ).toFixed(2)}
+        </h3>
       </React.Fragment>
     );
   }
