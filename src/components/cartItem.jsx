@@ -8,7 +8,23 @@ class CartItem extends Component {
       desc: props.desc,
       price: props.price,
       quantity: props.quantity,
+      onQuantityChanged: props.onQuantityChanged,
     };
+  }
+
+  //isNewItemAdd true (+), false (-)
+  UpdateQuantity(isNewItemAdded) {
+    var quantity = this.state.quantity;
+    //Add
+    if (isNewItemAdded) {
+      this.setState({ quantity: (quantity += 1) });
+    } else {
+      //Subtract
+      this.setState({
+        quantity: quantity > 1 ? (quantity -= 1) : quantity,
+      });
+    }
+    this.state.onQuantityChanged(this.state.name, quantity);
   }
 
   render() {
@@ -27,20 +43,13 @@ class CartItem extends Component {
             <div className="btn-group" role="group" aria-label="Quantity">
               <button
                 className="btn btn-success btn-sm"
-                onClick={() =>
-                  this.setState({ quantity: this.state.quantity + 1 })
-                }
+                onClick={() => this.UpdateQuantity(true)}
               >
                 +
               </button>
               <button
                 className="btn btn-danger btn-sm"
-                onClick={() =>
-                  this.setState({
-                    quantity:
-                      this.state.quantity > 1 ? this.state.quantity - 1 : 1,
-                  })
-                }
+                onClick={() => this.UpdateQuantity(false)}
               >
                 -
               </button>

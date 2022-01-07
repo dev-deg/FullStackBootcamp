@@ -73,6 +73,9 @@ class Cart extends Component {
             desc={item.desc}
             price={item.price}
             quantity={item.quantity}
+            onQuantityChanged={(name, quantity) =>
+              this.QuantityChanged(name, quantity)
+            }
           />
         ))}
         <h3 className="m-3">
