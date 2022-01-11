@@ -44,11 +44,10 @@ class Cart extends Component {
         i.quantity = quantity;
         if (quantity === 0) {
           //remove the item
-          items.splice(items.indexOf(i), 1);
+          this.setState({
+            cartItems: this.state.cartItems.filter((ci) => ci !== i),
+          });
         }
-        //update the state
-        this.setState({ cartItems: [...items] });
-
         return;
       }
     });
@@ -78,7 +77,7 @@ class Cart extends Component {
         {this.state.cartItems.map((item) => (
           <CartItem
             name={item.name}
-            key={this.state.cartItems.indexOf(item)}
+            key={item.name}
             desc={item.desc}
             price={item.price}
             quantity={item.quantity}

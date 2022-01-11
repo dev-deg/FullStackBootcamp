@@ -9,12 +9,12 @@ class MenuBar extends Component {
   render() {
     return (
       <React.Fragment>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-          <a class="navbar-brand p-2" href="#">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+          <a className="navbar-brand p-2" href="#">
             Dentist Shop
           </a>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-toggle="collapse"
             data-target="#navbarNav"
@@ -22,13 +22,13 @@ class MenuBar extends Component {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item active">
                 <a
-                  class="nav-link"
+                  className="nav-link"
                   href="#"
                   onClick={() => {
                     this.setState({ display: "home" });
@@ -37,9 +37,9 @@ class MenuBar extends Component {
                   Home
                 </a>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <a
-                  class="nav-link"
+                  className="nav-link"
                   href="#"
                   onClick={() => {
                     this.setState({ display: "cart" });
@@ -48,8 +48,8 @@ class MenuBar extends Component {
                   Cart
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#">
+              <li className="nav-item">
+                <a className="nav-link disabled" href="#">
                   Login
                 </a>
               </li>

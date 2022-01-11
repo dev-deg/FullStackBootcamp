@@ -4,7 +4,7 @@ import Cart from "./components/cart";
 
 class App extends Component {
   render() {
-    return <Home />;
+    return <Cart />;
   }
 }
 
