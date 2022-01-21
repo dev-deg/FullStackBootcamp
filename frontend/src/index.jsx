@@ -3,4 +3,4 @@ import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./app";
 
-ReactDOM.render(<App activePage="cart" />, document.getElementById("root"));
+ReactDOM.render(<App activePage="home" />, document.getElementById("root"));

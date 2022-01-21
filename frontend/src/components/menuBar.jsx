@@ -5,12 +5,19 @@ class MenuBar extends Component {
     super(props);
     this.state = {
       active: props.active,
+      onPageChanged: props.onPageChanged,
     };
+  }
+
+  updatePage(page) {
+    this.state.onPageChanged(page);
+    this.setState({ active: page });
   }
 
   isActive(page) {
     return this.state.active === page ? "nav-link active" : "nav-link";
   }
+
   render() {
     return (
       <React.Fragment>
@@ -36,7 +43,7 @@ class MenuBar extends Component {
                   className={this.isActive("home")}
                   href="#"
                   onClick={() => {
-                    this.setState({ display: "home" });
+                    this.updatePage("home");
                   }}
                 >
                   Home
@@ -47,7 +54,7 @@ class MenuBar extends Component {
                   className={this.isActive("cart")}
                   href="#"
                   onClick={() => {
-                    this.setState({ display: "cart" });
+                    this.updatePage("cart");
                   }}
                 >
                   Cart

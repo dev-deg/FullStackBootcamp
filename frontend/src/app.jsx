@@ -12,6 +12,10 @@ class App extends Component {
     };
   }
 
+  OnPageChanged(page) {
+    this.setState({ activePage: page });
+  }
+
   GetActivePage(active) {
     if (active === "home") {
       return <Home />;
@@ -24,7 +28,10 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <MenuBar active={this.state.activePage} />
+        <MenuBar
+          active={this.state.activePage}
+          onPageChanged={(page) => this.OnPageChanged(page)}
+        />
         {this.GetActivePage(this.state.activePage)}
       </React.Fragment>
     );
