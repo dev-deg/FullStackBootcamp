@@ -1,10 +1,15 @@
 import React, { Component } from "react";
-import Cart from "./cart";
 
 class MenuBar extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      active: props.active,
+    };
+  }
+
+  isActive(page) {
+    return this.state.active === page ? "nav-link active" : "nav-link";
   }
   render() {
     return (
@@ -28,7 +33,7 @@ class MenuBar extends Component {
             <ul className="navbar-nav">
               <li className="nav-item active">
                 <a
-                  className="nav-link"
+                  className={this.isActive("home")}
                   href="#"
                   onClick={() => {
                     this.setState({ display: "home" });
@@ -39,7 +44,7 @@ class MenuBar extends Component {
               </li>
               <li className="nav-item">
                 <a
-                  className="nav-link"
+                  className={this.isActive("cart")}
                   href="#"
                   onClick={() => {
                     this.setState({ display: "cart" });

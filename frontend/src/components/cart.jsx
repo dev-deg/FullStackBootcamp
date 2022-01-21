@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import CartItem from "./cartItem";
-import MenuBar from "./menuBar";
 
 class Cart extends Component {
   constructor(props) {
@@ -72,7 +71,6 @@ class Cart extends Component {
   render() {
     return (
       <React.Fragment>
-        <MenuBar />
         <h1 className="text-center p-2">Shopping Cart</h1>
         {this.state.cartItems.map((item) => (
           <CartItem

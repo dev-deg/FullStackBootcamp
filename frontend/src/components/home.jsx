@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import MenuBar from "./menuBar";
 
 class Home extends Component {
   constructor(props) {
@@ -12,7 +11,6 @@ class Home extends Component {
   render() {
     return (
       <React.Fragment>
-        <MenuBar />
         <h1>Welcome Home</h1>
       </React.Fragment>
     );
