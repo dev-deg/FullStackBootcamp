@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "1. Install REST Client from VS Code Extensions",
   "main": "index.js",
   "type": "module",
   "scripts": {
