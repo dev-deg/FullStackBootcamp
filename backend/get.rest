@@ -1,0 +1,1 @@
+GET https://www.boredapi.com/api/activity?participants=2
