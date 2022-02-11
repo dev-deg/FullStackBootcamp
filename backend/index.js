@@ -37,6 +37,7 @@ app.post("/register", (req, res) => {
     const name = req.query.name;
     const surname = req.query.surname;
     reqs++;
+    res.send({result: "success", requests: reqs, message: "User registered!"});
     console.log("email: " + email + "\n" + "password: " + password + "\n" + "name: " + name + "\n" + "surname: " + surname + "\n")
 })
 

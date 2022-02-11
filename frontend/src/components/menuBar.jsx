@@ -71,6 +71,17 @@ class MenuBar extends Component {
                   Login
                 </a>
               </li>
+              <li className="nav-item">
+                <a
+                  className={this.isActive("register")}
+                  href="#"
+                  onClick={() => {
+                    this.updatePage("register");
+                  }}
+                >
+                  Register
+                </a>
+              </li>
             </ul>
           </div>
         </nav>

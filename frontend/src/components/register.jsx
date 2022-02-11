@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import { ReqRegistration } from "../req";
 
-class Login extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
       emailValid: "form-control",
-      passwordValid: "form-control",
       password: "",
+      password2: "",
+      name: "",
+      surname: "",
     };
   }
 
@@ -35,25 +37,22 @@ class Login extends Component {
       : true;
   }
 
-  processLogin() {
-    if (this.validateEmail(this.state.email) && this.state.password != "") {
+  processRegister() {
+    if (
+      this.validateEmail(this.state.email) &&
+      this.state.password != "" &&
+      this.state.password2 != "" &&
+      this.state.name != "" &&
+      this.state.surname != ""
+    ) {
       const state = this.state;
-      ReqLogin(state.email, state.password).then((result) => {
-        this.informResult(result);
-      });
-    }
-  }
-
-  informResult(isSuccess) {
-    if (isSuccess) {
-      this.setState({
-        emailValid: "form-control is-valid",
-        passwordValid: "form-control is-valid",
-      });
-    } else {
-      this.setState({
-        emailValid: "form-control is-invalid",
-        passwordValid: "form-control is-invalid",
+      ReqRegistration(
+        state.email,
+        state.password,
+        state.name,
+        state.surname
+      ).then((result) => {
+        console.log("Register Success!");
       });
     }
   }
@@ -64,9 +63,35 @@ class Login extends Component {
         <div className="container">
           <div
             className="col-xl-4 col-lg-6 col-md-8 col-sm-10 mx-auto"
-            style={{ marginTop: "15%" }}
+            style={{ marginTop: "5%" }}
           >
             <form>
+              <div className="mb-3">
+                <label htmlFor="nameInput" className="form-label">
+                  Name
+                </label>
+                <input
+                  type="name"
+                  className="form-control"
+                  id="nameInput"
+                  aria-describedby="nameHelp"
+                  onBlur={(e) => this.setState({ name: e.target.value })}
+                />
+              </div>
+
+              <div className="mb-3">
+                <label htmlFor="nameInput" className="form-label">
+                  Surname
+                </label>
+                <input
+                  type="surname"
+                  className="form-control"
+                  id="surnameInput"
+                  aria-describedby="surnameHelp"
+                  onBlur={(e) => this.setState({ surname: e.target.value })}
+                />
+              </div>
+
               <div className="mb-3">
                 <label htmlFor="emailInput" className="form-label">
                   Email address
@@ -85,22 +110,30 @@ class Login extends Component {
                 </label>
                 <input
                   type="password"
-                  className={this.state.passwordValid}
+                  className="form-control"
                   id="passwordInput"
                   onBlur={(e) => this.setState({ password: e.target.value })}
                 />
               </div>
 
               <div className="mb-3">
-                <a href="#">Forgot your password?</a>
+                <label htmlFor="passwordInput2" className="form-label">
+                  Re-type Password
+                </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="passwordInput2"
+                  onBlur={(e) => this.setState({ password2: e.target.value })}
+                />
               </div>
 
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={(e) => this.processLogin()}
+                onClick={(e) => this.processRegister()}
               >
-                Login
+                Register
               </button>
             </form>
           </div>
@@ -110,4 +143,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Register;

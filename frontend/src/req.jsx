@@ -17,6 +17,28 @@ export const ReqLogin = async (email, password) => {
   }
 };
 
-export const ReqRegistration = async (email, password, name, surname) => {};
+export const ReqRegistration = async (email, password, name, surname) => {
+  const headers = {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": true,
+  };
+  const response = await Axios.post(
+    "http://localhost:3001/register?email=" +
+      email +
+      "&password=" +
+      password +
+      "&name=" +
+      name +
+      "&surname=" +
+      surname,
+    {},
+    { headers }
+  );
+  if (response.data.result === "success") {
+    return true;
+  } else {
+    return false;
+  }
+};
 
 export default ReqLogin;

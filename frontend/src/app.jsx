@@ -4,6 +4,7 @@ import Cart from "./components/cart";
 import MenuBar from "./components/menuBar";
 import PNF from "./components/pnf";
 import Login from "./components/login";
+import Register from "./components/register";
 
 class App extends Component {
   constructor(props) {
@@ -24,6 +25,8 @@ class App extends Component {
       return <Cart />;
     } else if (active === "login") {
       return <Login />;
+    } else if (active === "register") {
+      return <Register />;
     } else {
       <PNF />;
     }
