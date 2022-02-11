@@ -1,9 +1,13 @@
 import Express from "express";
+import cors from "cors"
 
 const app = Express();
 const PORT = 3001;
 
 let reqs = 0;
+
+
+app.use(cors());
 
 app.get("/secret", (req, res) => {
     const token = req.query.token;
@@ -16,7 +20,7 @@ app.get("/secret", (req, res) => {
     }
 })
 
-app.get("/login", (req, res) => {
+app.post("/login", (req, res) => {
     const email = req.query.email;
     const password = req.query.password;
     reqs++;

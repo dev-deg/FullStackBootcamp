@@ -43,10 +43,10 @@ GET http://localhost:3000
 
 6. To run MAC: Cmd+Alt+R || PC: Ctrl+Alt+R
 
-7. Installing Axios
+7. Installing cors
 
 ```bash
-npm install axios
+npm install cors
 ```
 
 ## NOTES

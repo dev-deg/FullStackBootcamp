@@ -33,6 +33,12 @@ npm i bootstrap@latest
 
 12. Deleted all the files inside the src
 
+13. Installing Axios
+
+```bash
+npm install axios
+```
+
 ## Flow of Components
 
 cartItem <- cart <- app <- index
