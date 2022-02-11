@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-const ReqLogin = async (email, password) => {
+export const ReqLogin = async (email, password) => {
   const headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": true,
@@ -16,5 +16,7 @@ const ReqLogin = async (email, password) => {
     return false;
   }
 };
+
+export const ReqRegistration = async (email, password, name, surname) => {};
 
 export default ReqLogin;

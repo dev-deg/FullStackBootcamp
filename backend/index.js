@@ -31,6 +31,15 @@ app.post("/login", (req, res) => {
     }
 })
 
+app.post("/register", (req, res) => {
+    const email = req.query.email;
+    const password = req.query.password;
+    const name = req.query.name;
+    const surname = req.query.surname;
+    reqs++;
+    console.log("email: " + email + "\n" + "password: " + password + "\n" + "name: " + name + "\n" + "surname: " + surname + "\n")
+})
+
 //Process Login
 
 

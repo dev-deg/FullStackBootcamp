@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ReqLogin } from "../req";
+import { ReqRegistration } from "../req";
 
 class Login extends Component {
   constructor(props) {
