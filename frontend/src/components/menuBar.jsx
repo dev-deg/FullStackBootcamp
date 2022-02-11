@@ -61,7 +61,13 @@ class MenuBar extends Component {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link disabled" href="#">
+                <a
+                  className={this.isActive("login")}
+                  href="#"
+                  onClick={() => {
+                    this.updatePage("login");
+                  }}
+                >
                   Login
                 </a>
               </li>
