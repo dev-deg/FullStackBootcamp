@@ -3,7 +3,34 @@ import React, { Component } from "react";
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      email: "",
+      emailValid: "form-control",
+      password: "",
+    };
+  }
+
+  setEmail(email) {
+    this.setState({ email: email });
+
+    if (email !== "") {
+      const isValid = this.validateEmail(email);
+      if (!isValid) {
+        this.setState({ emailValid: "form-control is-invalid" });
+      } else {
+        this.setState({ emailValid: "form-control" });
+      }
+    } else {
+      this.setState({ emailValid: "form-control" });
+    }
+  }
+
+  validateEmail(email) {
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    ) === null
+      ? false
+      : true;
   }
 
   render() {
@@ -21,9 +48,10 @@ class Login extends Component {
                 </label>
                 <input
                   type="email"
-                  className="form-control"
+                  className={this.state.emailValid}
                   id="emailInput"
                   aria-describedby="emailHelp"
+                  onBlur={(e) => this.setEmail(e.target.value)}
                 />
               </div>
               <div className="mb-3">
@@ -34,6 +62,7 @@ class Login extends Component {
                   type="password"
                   className="form-control"
                   id="passwordInput"
+                  onBlur={(e) => this.setState({ password: e.target.value })}
                 />
               </div>
 
