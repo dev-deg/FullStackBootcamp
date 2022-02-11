@@ -43,6 +43,12 @@ GET http://localhost:3000
 
 6. To run MAC: Cmd+Alt+R || PC: Ctrl+Alt+R
 
+7. Installing Axios
+
+```bash
+npm install axios
+```
+
 ## NOTES
 
 ### WHAT IS AN API?
