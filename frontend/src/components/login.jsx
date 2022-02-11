@@ -7,6 +7,7 @@ class Login extends Component {
     this.state = {
       email: "",
       emailValid: "form-control",
+      passwordValid: "form-control",
       password: "",
     };
   }
@@ -37,7 +38,23 @@ class Login extends Component {
   processLogin() {
     if (this.validateEmail(this.state.email) && this.state.password != "") {
       const state = this.state;
-      ReqLogin(state.email, state.password);
+      ReqLogin(state.email, state.password).then((result) => {
+        this.informResult(result);
+      });
+    }
+  }
+
+  informResult(isSuccess) {
+    if (isSuccess) {
+      this.setState({
+        emailValid: "form-control is-valid",
+        passwordValid: "form-control is-valid",
+      });
+    } else {
+      this.setState({
+        emailValid: "form-control is-invalid",
+        passwordValid: "form-control is-invalid",
+      });
     }
   }
 
@@ -68,7 +85,7 @@ class Login extends Component {
                 </label>
                 <input
                   type="password"
-                  className="form-control"
+                  className={this.state.passwordValid}
                   id="passwordInput"
                   onBlur={(e) => this.setState({ password: e.target.value })}
                 />

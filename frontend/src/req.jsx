@@ -10,7 +10,11 @@ const ReqLogin = async (email, password) => {
     {},
     { headers }
   );
-  console.log(response.data.result);
+  if (response.data.result === "success") {
+    return true;
+  } else {
+    return false;
+  }
 };
 
 export default ReqLogin;

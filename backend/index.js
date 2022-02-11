@@ -25,9 +25,9 @@ app.post("/login", (req, res) => {
     const password = req.query.password;
     reqs++;
     if (email == "test@test.com" && password == "test123"){
-        res.send({result: "success", requests: reqs, message: "Correct username and password"});
+        res.send({result: "success", requests: reqs, message: "Correct email and password"});
     }else{
-        res.send({result: "unauthorized", message: "Invalid username or password"});
+        res.send({result: "unauthorized", message: "Invalid email or password"});
     }
 })
 
