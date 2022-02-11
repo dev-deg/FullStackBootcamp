@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReqLogin from "../req";
 
 class Login extends Component {
   constructor(props) {
@@ -31,6 +32,13 @@ class Login extends Component {
     ) === null
       ? false
       : true;
+  }
+
+  processLogin() {
+    if (this.validateEmail(this.state.email) && this.state.password != "") {
+      const state = this.state;
+      ReqLogin(state.email, state.password);
+    }
   }
 
   render() {
@@ -70,7 +78,11 @@ class Login extends Component {
                 <a href="#">Forgot your password?</a>
               </div>
 
-              <button type="button" className="btn btn-primary">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={(e) => this.processLogin()}
+              >
                 Login
               </button>
             </form>
