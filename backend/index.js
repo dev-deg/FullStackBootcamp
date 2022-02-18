@@ -68,16 +68,4 @@ app.post("/register", (req, res) => {
 
 ConnectDb();
 
-setTimeout(
-  () =>
-    SaveToDb("users", {
-      email: "test@test.com",
-      password: "123",
-      name: "John",
-    }).then((r) => console.log("Saved")),
-  3000
-);
-
-setTimeout(() => CloseConnection(), 5000);
-
 app.listen(PORT, () => console.log("Server Listening on port: " + PORT));

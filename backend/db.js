@@ -26,6 +26,8 @@ export async function SaveToDb(col, data) {
   }
 }
 
-export function CloseConnection() {
+process.on("exit", () => client.close());
+process.on("uncaughtException", (error) => {
+  console.log(error);
   client.close();
-}
+});
