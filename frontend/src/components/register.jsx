@@ -40,10 +40,10 @@ class Register extends Component {
   processRegister() {
     if (
       this.validateEmail(this.state.email) &&
-      this.state.password != "" &&
-      this.state.password2 != "" &&
-      this.state.name != "" &&
-      this.state.surname != ""
+      this.state.password !== "" &&
+      this.state.password2 !== "" &&
+      this.state.name !== "" &&
+      this.state.surname !== ""
     ) {
       const state = this.state;
       ReqRegistration(

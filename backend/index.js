@@ -1,6 +1,6 @@
 import Express from "express";
 import cors from "cors";
-import { ConnectDb, SaveToDb, CloseConnection } from "./db.js";
+import { ConnectDb, SaveToDb } from "./db.js";
 
 const app = Express();
 const PORT = 3001;
@@ -42,26 +42,32 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-  const email = req.query.email;
-  const password = req.query.password;
-  const name = req.query.name;
-  const surname = req.query.surname;
+  const _email = req.query.email;
+  const _password = req.query.password;
+  const _name = req.query.name;
+  const _surname = req.query.surname;
   reqs++;
-  res.send({ result: "success", requests: reqs, message: "User registered!" });
-  console.log(
-    "email: " +
-      email +
-      "\n" +
-      "password: " +
-      password +
-      "\n" +
-      "name: " +
-      name +
-      "\n" +
-      "surname: " +
-      surname +
-      "\n"
-  );
+
+  SaveToDb("users", {
+    email: _email,
+    password: _password,
+    name: _name,
+    surname: _surname,
+  }).then((result) => {
+    if (result.acknowledged === true) {
+      res.send({
+        result: "success",
+        requests: reqs,
+        message: "User registered!",
+      });
+    } else {
+      res.send({
+        result: "failed",
+        requests: reqs,
+        message: "User not registered!",
+      });
+    }
+  });
 });
 
 //Process Login
