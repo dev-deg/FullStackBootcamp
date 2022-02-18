@@ -78,3 +78,6 @@ DELETE - Deletes data
 4. Think of a logical way how you combine the response from both APIs to determine the route from one place to another by walking/cycling (good weather) or by car (bad weather).
 5. Start working on a UI that would take two inputs (longitude and latitude) || use GPS location from browser https://www.w3schools.com/html/html5_geolocation.asp
 6. Output the recommanded route to the user || ...using mapbox
+
+ecom123456
+SSNuhM3vdKkJMCCw
