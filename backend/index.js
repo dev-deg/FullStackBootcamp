@@ -1,30 +1,29 @@
 import Express from "express";
 import cors from "cors";
 import { ConnectDb, SaveToDb } from "./db.js";
+import session from "express-session";
+import cookieParser from "cookie-parser";
+import { v4 as uuid } from "uuid";
 
 const app = Express();
 const PORT = 3001;
 
 let reqs = 0;
 
-app.use(cors());
+const oneDay = 1000 * 60 * 60 * 24;
 
-app.get("/secret", (req, res) => {
-  const token = req.query.token;
-  //console.log(req);
-  reqs++;
-  if (
-    token == "9ea962b6da432edee2efe9241f81f95f704f061e130ed6a159f19c763b96d741"
-  ) {
-    res.send({
-      result: 200,
-      requests: reqs,
-      message: "Apples can be red or green.",
-    });
-  } else {
-    res.send({ result: 401, message: "Unauthorized access." });
-  }
-});
+//middleware
+app.use(cors());
+app.use(cookieParser());
+app.use(
+  session({
+    genid: (req) => uuid(),
+    secret: "I<3dogs",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: oneDay },
+  })
+);
 
 app.post("/login", (req, res) => {
   const email = req.query.email;
