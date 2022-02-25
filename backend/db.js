@@ -26,6 +26,14 @@ export async function SaveToDb(col, data) {
   }
 }
 
+export async function GetFromDb(col, item) {
+  try {
+    return await db.collection(col).find(item).toArray();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 process.on("exit", () => client.close());
 process.on("uncaughtException", (error) => {
   console.log(error);

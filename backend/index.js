@@ -1,6 +1,6 @@
 import Express from "express";
 import cors from "cors";
-import { ConnectDb, SaveToDb } from "./db.js";
+import { ConnectDb, SaveToDb, GetFromDb } from "./db.js";
 import session from "express-session";
 import cookieParser from "cookie-parser";
 import { v4 as uuid } from "uuid";
@@ -20,7 +20,7 @@ app.use(
     genid: (req) => uuid(),
     secret: "I<3dogs",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: { maxAge: oneDay },
   })
 );
@@ -29,15 +29,25 @@ app.post("/login", (req, res) => {
   const email = req.query.email;
   const password = req.query.password;
   reqs++;
-  if (email == "test@test.com" && password == "test123") {
-    res.send({
-      result: "success",
-      requests: reqs,
-      message: "Correct email and password",
-    });
-  } else {
-    res.send({ result: "unauthorized", message: "Invalid email or password" });
-  }
+  GetFromDb("users", { email: email, password: password }).then((r) => {
+    if (r.length === 0) {
+      //user does not exist
+      res.send({
+        result: "unauthorized",
+        message: "Invalid email or password",
+      });
+    } else {
+      //user exists
+      //req.session.email = email;
+      //req.session.name = "David";
+      console.log(`${r[0].name} has logged in successfully.`);
+      res.send({
+        result: "success",
+        requests: reqs,
+        message: "Correct email and password",
+      });
+    }
+  });
 });
 
 app.post("/register", (req, res) => {
