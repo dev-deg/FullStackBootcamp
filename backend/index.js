@@ -38,8 +38,7 @@ app.post("/login", (req, res) => {
       });
     } else {
       //user exists
-      //req.session.email = email;
-      //req.session.name = "David";
+      res.session = { email: r[0].email, name: r[0].name };
       console.log(`${r[0].name} has logged in successfully.`);
       res.send({
         result: "success",
