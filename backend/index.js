@@ -1,34 +1,24 @@
 import Express from "express";
 import cors from "cors";
 import { ConnectDb, SaveToDb, GetFromDb } from "./db.js";
-import session from "express-session";
 import cookieParser from "cookie-parser";
-import { v4 as uuid } from "uuid";
+import jwt from "jsonwebtoken";
 
+const SECRET_KEY = "iuwejhfhuehe80189u31820eidqihqbd!!13";
 const app = Express();
 const PORT = 3001;
 
 let reqs = 0;
 
-const oneDay = 1000 * 60 * 60 * 24;
-
 //middleware
 app.use(cors());
 app.use(cookieParser());
-app.use(
-  session({
-    genid: (req) => uuid(),
-    secret: "I<3dogs",
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: oneDay },
-  })
-);
 
 app.post("/login", (req, res) => {
   const email = req.query.email;
   const password = req.query.password;
   reqs++;
+
   GetFromDb("users", { email: email, password: password }).then((r) => {
     if (r.length === 0) {
       //user does not exist
@@ -38,8 +28,9 @@ app.post("/login", (req, res) => {
       });
     } else {
       //user exists
-      res.session = { email: r[0].email, name: r[0].name };
+      const token = SignSessionToken(email, r[0].name);
       console.log(`${r[0].name} has logged in successfully.`);
+      res.cookie("session", token);
       res.send({
         result: "success",
         requests: reqs,
@@ -78,7 +69,27 @@ app.post("/register", (req, res) => {
   });
 });
 
-//Process Login
+//Generating an encrypted token
+function SignSessionToken(email, name) {
+  return jwt.sign(
+    {
+      email: email,
+      name: name,
+    },
+    SECRET_KEY,
+    { expiresIn: "1h" }
+  );
+}
+
+//Validating encryption token
+function ValidateSesionToken(token) {
+  try {
+    jwt.verify(token, SECRET_KEY);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
 
 ConnectDb();
 
