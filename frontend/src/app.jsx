@@ -5,6 +5,25 @@ import MenuBar from "./components/menuBar";
 import PNF from "./components/pnf";
 import Login from "./components/login";
 import Register from "./components/register";
+import { ReqValidation } from "../src/req";
+
+//loading the cookie in the variable cookie
+let cookie = document.cookie;
+
+// //if cookie exists
+// if (cookie) {
+//   ReqValidation(cookie.split("=")[1]).then((r) => {
+//     console.log(r);
+//     if (r === true) {
+//       //render home
+//     } else {
+//       //render login
+//     }
+//   });
+//   //cookie does not exist
+// } else {
+//   //render login page
+// }
 
 class App extends Component {
   constructor(props) {
