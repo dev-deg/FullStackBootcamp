@@ -30,11 +30,11 @@ app.post("/login", (req, res) => {
       //user exists
       const token = SignSessionToken(email, r[0].name);
       console.log(`${r[0].name} has logged in successfully.`);
-      res.cookie("session", token);
       res.send({
         result: "success",
         requests: reqs,
         message: "Correct email and password",
+        token: token,
       });
     }
   });
