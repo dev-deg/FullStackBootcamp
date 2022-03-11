@@ -42,3 +42,43 @@ npm install axios
 ## Flow of Components
 
 cartItem <- cart <- app <- index
+
+
+# Setting up Font Awesome
+
+Step 1: Download and Install FA packages
+```bash
+npm i --save @fortawesome/fontawesome-svg-core
+npm i --save @fortawesome/free-solid-svg-icons
+npm i --save @fortawesome/free-regular-svg-icons
+npm i --save @fortawesome/react-fontawesome@latest
+npm i babel-plugin-macros
+```
+
+Step 2: Create babel.config.js in frontend
+
+```js
+module.exports = function (api) {
+  return {
+    plugins: ['macros'],
+  }
+}
+```
+
+Step 3: Crete babel-plugin-macros.config.js in frontend
+
+```js
+module.exports = {
+  'fontawesome-svg-core': {
+    'license': 'free'
+  }
+}
+```
+
+Step 4: Use FA
+
+```jsx
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
+<FontAwesomeIcon icon={regular('coffee')} />
+```

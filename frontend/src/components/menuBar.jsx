@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'  // <-- import styles to be used
 
+ 
 class MenuBar extends Component {
   constructor(props) {
     super(props);
@@ -57,7 +60,7 @@ class MenuBar extends Component {
                     this.updatePage("cart");
                   }}
                 >
-                  Cart
+                  <FontAwesomeIcon icon={solid('cart-shopping')} /> Cart
                 </a>
               </li>
               <li className="nav-item">
