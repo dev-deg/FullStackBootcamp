@@ -10,9 +10,10 @@ let db;
 export function ConnectDb() {
   try {
     client = new MongoClient(connectionString);
-    client.connect((err) => {
-      db = client.db("fsb");
-      console.log("Connected to database.");
+    client.connect((r) => {
+      console.log(r);
+        db = client.db("fsb");
+        console.log("Connected to database.");
     });
   } catch (error) {
     console.log(error);

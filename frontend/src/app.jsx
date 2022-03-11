@@ -3,6 +3,7 @@ import Home from "./components/home";
 import Cart from "./components/cart";
 import MenuBar from "./components/menuBar";
 import PNF from "./components/pnf";
+import Footer from "./components/footer";
 import Login from "./components/login";
 import Register from "./components/register";
 import { ReqValidation } from "../src/req";
@@ -57,7 +58,10 @@ class App extends Component {
           active={this.state.activePage}
           onPageChanged={(page) => this.OnPageChanged(page)}
         />
+
         {this.GetActivePage(this.state.activePage)}
+
+      <Footer />
       </React.Fragment>
     );
   }

@@ -62,4 +62,8 @@ export const ReqValidation = async (token) => {
   }
 };
 
+// export const SignOut = () => {
+//   document.cookie = "session=" + response.data.token;
+// };
+
 export default ReqLogin;

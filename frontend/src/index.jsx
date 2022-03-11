@@ -21,4 +21,5 @@ if (cookie) {
   //render login page
 }
 
+
 ReactDOM.render(<App activePage="home" />, document.getElementById("root"));
